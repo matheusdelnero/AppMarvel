@@ -31,6 +31,12 @@ class DetailsCharacterFragment: BaseFragment<FragmentDetailsCharacterBinding, De
     private val comicAdapter by lazy { ComicAdapter() }
     private lateinit var characterModel: CharacterModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         characterModel = args.characterId
@@ -116,7 +122,7 @@ class DetailsCharacterFragment: BaseFragment<FragmentDetailsCharacterBinding, De
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.favorite -> {
-                //viewModel.insert(characterModel)
+                viewModel.insert(characterModel)
                 toast(getString(R.string.saved_successfully))
             }
         }

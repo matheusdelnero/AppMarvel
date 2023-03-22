@@ -75,8 +75,8 @@ class ListCharacterFragment :BaseFragment<FragmentListCharacterBinding, ListChar
     private fun setupRecyclerView() = with(binding) {
         rvCharacters.apply {
             adapter = characterAdapter
-            //layoutManager = GridLayoutManager(requireContext(),2)
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(),2)
+            //layoutManager = LinearLayoutManager(requireContext())
         }
 
     }

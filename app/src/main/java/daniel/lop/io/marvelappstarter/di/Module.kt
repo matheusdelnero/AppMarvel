@@ -1,12 +1,18 @@
 package daniel.lop.io.marvelappstarter.di
 
 import android.app.Service
+import android.content.Context
+import androidx.room.Room
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.internal.processedrootsentinel.ProcessedRootSentinel
+import daniel.lop.io.marvelappstarter.data.local.MarvelDataBase
 import daniel.lop.io.marvelappstarter.data.remote.ServiceApi
 import daniel.lop.io.marvelappstarter.util.Constants
 import daniel.lop.io.marvelappstarter.util.Constants.BASE_URL
+import daniel.lop.io.marvelappstarter.util.Constants.DATABASE_NAME
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,6 +28,16 @@ import javax.inject.Singleton
 @dagger.Module
 @InstallIn(SingletonComponent::class)
 object Module {
+
+    @Singleton
+    @Provides
+    fun provideMarvelDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(context,MarvelDataBase::class.java,DATABASE_NAME).build()
+
+    @Singleton
+    @Provides
+    fun provideMarvelDao(dataBase: MarvelDataBase) = dataBase.marvelDao()
 
     @Singleton
     @Provides
