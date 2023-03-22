@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import daniel.lop.io.marvelappstarter.R
@@ -74,6 +75,7 @@ class ListCharacterFragment :BaseFragment<FragmentListCharacterBinding, ListChar
     private fun setupRecyclerView() = with(binding) {
         rvCharacters.apply {
             adapter = characterAdapter
+            //layoutManager = GridLayoutManager(requireContext(),2)
             layoutManager = LinearLayoutManager(requireContext())
         }
 
